@@ -1,0 +1,24 @@
+{
+  "name": "process-pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "coverage": "nyc --reporter=html npm run test"
+  },
+  "keywords": [],
+  "author": "Adobe",
+  "license": "",
+  "dependencies": {
+    "aws-sdk": "^2.644.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^5.1.0",
+    "chai": "^4.3.4",
+    "fs": "0.0.1-security",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0"
+  }
+}
