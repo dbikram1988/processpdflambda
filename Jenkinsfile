@@ -1,7 +1,7 @@
 node {
     def server = Artifactory.server 'bikramdutta.jfrog.io'
     def rtNpm = Artifactory.newNpmBuild()
-    def buildInfo
+    def buildInfo = Artifactory.newBuildInfo()
     def commit_id
     stage('Preparation') {
       checkout scm
@@ -16,8 +16,7 @@ node {
     stage ('Artifactory configuration') {
         rtNpm.deployer repo: 'processpdf', server: server
         rtNpm.resolver repo: 'processpdf', server: server
-        rtNpm.tool = nodejs // Tool name from Jenkins configuration
-        buildInfo = Artifactory.newBuildInfo()
+        
     }
 
     
