@@ -15,7 +15,7 @@ node {
     
     stage('Build') {
      nodejs(nodeJSInstallationName: 'nodejs') {
-       sh 'npm install --only=dev'
+       bat 'npm install --only=dev'
       
      }
    }
