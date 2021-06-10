@@ -2,10 +2,23 @@ node {
     def server = Artifactory.server 'bikramdutta.jfrog.io'
     def rtNpm = Artifactory.newNpmBuild()
     def buildInfo
+    def commit_id
+    stage('Preparation') {
+      checkout scm
+      sh "git rev-parse --short HEAD > .git/commit-id"                        
+      commit_id = readFile('.git/commit-id').trim()
+    }
 
     stage ('Clone') {
         git url: 'https://github.com/dbikram1988/processpdflambda.git'
     }
+    
+    stage('Build') {
+     nodejs(nodeJSInstallationName: 'nodejs') {
+       sh 'npm install --only=dev'
+      
+     }
+   }
 
     stage ('Artifactory configuration') {
         rtNpm.deployer repo: 'processpdf', server: server
@@ -14,10 +27,7 @@ node {
         buildInfo = Artifactory.newBuildInfo()
     }
 
-    stage ('Install npm') {
-        rtNpm.install buildInfo: buildInfo
-    }
-
+    
     stage ('Publish npm') {
         rtNpm.publish buildInfo: buildInfo
     }
