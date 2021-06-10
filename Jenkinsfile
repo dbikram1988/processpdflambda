@@ -9,11 +9,7 @@ node {
       commit_id = readFile('.git/commit-id').trim()
     }
 
-    stage ('Clone') {
-        git url: 'https://github.com/dbikram1988/processpdflambda.git'
-    }
-    
-    stage('Build') {
+   stage('Build') {
      nodejs(nodeJSInstallationName: 'nodejs') {
        bat 'npm install --only=dev'
       
