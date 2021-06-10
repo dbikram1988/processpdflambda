@@ -1,5 +1,5 @@
 node {
-    def server = Artifactory.server('bikramdutta.jfrog.io/artifactory')
+    def server = Artifactory.server('https://bikramdutta.jfrog.io/artifactory')
     def rtNpm = Artifactory.newNpmBuild()
     def buildInfo
 
