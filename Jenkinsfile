@@ -1,5 +1,5 @@
 node {
-    def server = Artifactory.server('artifactory.corp.adobe.com/artifactory/api/npm')
+    def server = Artifactory.server('bikramdutta.jfrog.io/artifactory/processpdf/')
     def rtNpm = Artifactory.newNpmBuild()
     def buildInfo
 
@@ -8,8 +8,8 @@ node {
     }
 
     stage ('Artifactory configuration') {
-        rtNpm.deployer repo: 'npm-doc-management-lambda-release', server: server
-        rtNpm.resolver repo: 'npm-doc-management-lambda-release', server: server
+        rtNpm.deployer repo: 'processpdf', server: server
+        rtNpm.resolver repo: 'processpdf', server: server
         rtNpm.tool = nodejs // Tool name from Jenkins configuration
         buildInfo = Artifactory.newBuildInfo()
     }
