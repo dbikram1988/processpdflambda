@@ -10,10 +10,7 @@ node {
     }
 
    stage('Build') {
-     nodejs(nodeJSInstallationName: 'nodejs') {
-       bat 'npm install --only=dev'
-      
-     }
+      bat 'npm install --only=dev'
    }
 
     stage ('Artifactory configuration') {
