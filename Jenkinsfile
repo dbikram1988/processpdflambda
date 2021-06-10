@@ -1,5 +1,5 @@
 node {
-    def server = Artifactory.server 'bikramdutta.jfrog.io'
+    def server = Artifactory.server 'JFROG Enterprise'
     def rtNpm = Artifactory.newNpmBuild()
     def buildInfo = Artifactory.newBuildInfo()
     def commit_id
