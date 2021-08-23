@@ -6,7 +6,12 @@
   "scripts": {
     "test": "mocha test",
     "coverage": "nyc --reporter=html npm run test"
+    "postpack": "tarball=$(npm list --depth 0 | sed 's/@/-/g; s/ .*/.tgz/g; 1q;'); tar -tf $tarball | sed 's/^package\\///' | zip -@r package; rm $tarball"
   },
+  "files": [
+    "/index.js", 
+    "/lib"
+  ],
   "keywords": [],
   "author": "Adobe",
   "license": "",
