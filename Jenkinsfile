@@ -1,7 +1,4 @@
 node {
-    def server = Artifactory.server 'bikramdutta.jfrog.io'
-    def rtNpm = Artifactory.newNpmBuild()
-    def buildInfo = Artifactory.newBuildInfo()
     def commit_id
     stage('Preparation') {
       checkout scm
@@ -10,21 +7,8 @@ node {
     }
 
    stage('Build') {
-      bat 'npm install --only=dev'
+      bat 'npm install'
+      bat 'npm pack'
    }
 
-    stage ('Artifactory configuration') {
-        rtNpm.deployer repo: 'processpdf', server: server
-        rtNpm.resolver repo: 'processpdf', server: server
-        
-    }
-
-    
-    stage ('Publish npm') {
-        rtNpm.publish buildInfo: buildInfo
-    }
-
-    stage ('Publish build info') {
-        server.publishBuildInfo buildInfo
-    }
 }
